@@ -7,4 +7,12 @@
 body{
 	background-color: rgb(255);
 	text-align:center;
+	font-family:Century Gothic;
+	display:block;
+	margin-left:30%;
+	margin-right:30%;
+}
+
+h1{
+	font-family:Century Gothic;
 }
