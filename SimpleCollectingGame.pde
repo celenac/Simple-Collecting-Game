@@ -12,9 +12,12 @@ ArrayList <Collectable> collectables =new ArrayList <Collectable>();
 int [] randomYpositions;
 int randomArrayLength=(int)((Math.random()*3)+2);
 int [] randomXpositions;
+int enemiesArrayListSize=1; //switch to zero on lvl 1
+ArrayList <Enemy> enemies =new ArrayList <Enemy>();
 int score=0;
 int platformX;
 int platformY;
+int platformWidth=300;
 void setup()
 {
   size(1000, 600);
@@ -31,12 +34,12 @@ void setup()
 
   //creating random platform positions
   int i=1;
-  randomXpositions[0]=(int)(Math.random()*(width-300));
+  randomXpositions[0]=(int)(Math.random()*(width-platformWidth));
   randomYpositions[0]=300;
   while(i<randomArrayLength)
   {
     do{
-      platformX=newRandInt(platformX, width-300);
+      platformX=newRandInt(platformX, width-platformWidth);
       randomXpositions[i]=platformX;
     }
     while(abs((randomXpositions[i]-randomXpositions[i-1]))>350);
@@ -47,6 +50,10 @@ void setup()
   for (int c=0; c<collectablesArrayListSize; c++)
   {
     collectables.add(new Collectable());
+  }
+
+  for (int e=0; e<enemiesArrayListSize; e++){
+    enemies.add(new Enemy());
   }
 }
 
@@ -72,7 +79,7 @@ void draw()
   fill(groundColor);
   for (int i=0; i<randomArrayLength; i++)
   {
-    rect(randomXpositions[i], randomYpositions[i], 300, 20,4);
+    rect(randomXpositions[i], randomYpositions[i], platformWidth, 20,4);
   }
 
   //little box
@@ -88,6 +95,7 @@ void draw()
   fill(0);
   text(score + "/" + collectablesArrayListSize, 20, 30);
 
+  //collectables
   for (int c=0; c<collectables.size(); c++)
   {
     collectables.get(c).show();
@@ -98,6 +106,11 @@ void draw()
     }
   }
 
+  //enemies
+  for(int e=0; e<enemies.size(); e++){
+    enemies.get(e).show();
+    enemies.get(e).move();
+  }
 
   //pressing two keys simultaneously
   if (keys[0]==true) {x=x+3;}
@@ -143,7 +156,7 @@ class Collectable
   Collectable()
   {
     randomIndex=(int)(Math.random()*randomArrayLength);
-    collectableX=randomXpositions[randomIndex]+(int)(Math.random()*300);
+    collectableX=randomXpositions[randomIndex]+(int)(Math.random()*(platformWidth-10));
     collectableY=randomYpositions[randomIndex]-10;
   }
   void show()
@@ -160,4 +173,56 @@ class Collectable
   }
   public int getX(){return collectableX;}
   public int getY(){return collectableY;}
+}
+
+class Enemy
+{
+  int enemyX, enemyY, randomIndex, enemyRandomDirection, enemy_isjumping, enemy_yinc;
+  Enemy()
+  {
+    enemyRandomDirection=(int)(Math.random()*50)-26; //random negative or positive number generator
+    enemyX=(int)(Math.random()*(width-10));
+    enemyY=400-10;
+    enemy_isjumping=0; //flag to know when enemy is jumping or not
+  }
+
+  void show(){
+    fill(2,198,0);
+    rect(enemyX, enemyY, 10, 10, 3);
+  }
+
+  void move(){
+    if(enemyRandomDirection<0){
+      enemyX=enemyX-2;
+    }
+    else{
+      enemyX=enemyX+2;
+    }
+    if(millis()%200==0){ //for every 100 milliseconds, generate a new random direction
+      enemyRandomDirection=(int)(Math.random()*50)-26;
+    }
+
+    //wrapping around screen
+    if (enemyX>width-mainSize) {enemyX=0;}
+    if (enemyX<0) {enemyX=width-mainSize;}
+
+    //enemy random jump
+    if (millis()%500==0 && enemy_isjumping==0)
+    {
+      enemy_isjumping=1;
+      enemy_yinc=-15;
+    }
+    if (enemy_isjumping==1 || get(enemyX, enemyY+10)!=groundColor) //if enemy is jumping
+    {
+      enemyY=enemyY+enemy_yinc; //add thrust to current enemyY position
+      enemy_yinc=enemy_yinc+1; //-5,-4,-3,-2,-1,0,1,2
+    }
+    if (get(enemyX, enemyY+10)==groundColor)//if in range on the x axis of platform 
+    {
+      enemy_isjumping=0;
+    }
+    if (get(enemyY, enemyY+9)==groundColor || get(enemyX+10, enemyY+9)==groundColor) {
+      enemyY--;
+    } //makes enemy walk on the very surface after a jump
+  }
 }
