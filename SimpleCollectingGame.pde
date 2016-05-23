@@ -1,6 +1,8 @@
 //jumping instructions: http://ashbprocessing.blogspot.com/2013/04/second-stage-character-jumping-platforms.html
 
+
 int x, y, groundY;
+int mainSize=10; //white square's width and height
 int yinc; //speed of upthrust for character jump
 int isjumping=0; //flag to know if character is jumping or not
 int groundColor=color(0);
@@ -11,6 +13,8 @@ int [] randomYpositions;
 int randomArrayLength=(int)((Math.random()*3)+2);
 int [] randomXpositions;
 int score=0;
+int platformX;
+int platformY;
 void setup()
 {
   size(1000, 600);
@@ -26,11 +30,17 @@ void setup()
   randomXpositions=new int [randomArrayLength];
 
   //creating random platform positions
-  int i=0;
+  int i=1;
+  randomXpositions[0]=(int)(Math.random()*(width-300));
+  randomYpositions[0]=300;
   while(i<randomArrayLength)
   {
-    randomXpositions[i]=(int)(Math.random()*350);
-    randomYpositions[i]=(((int)(Math.random()*7))*50)+30;
+    do{
+      platformX=newRandInt(platformX, width-300);
+      randomXpositions[i]=platformX;
+    }
+    while(abs((randomXpositions[i]-randomXpositions[i-1]))>350);
+    randomYpositions[i]=randomYpositions[i-1]-((int)(Math.random()*50)+50);
     i++;
   }
   
@@ -40,28 +50,38 @@ void setup()
   }
 }
 
+public int newRandInt(int tempVar, int maxValue){
+  tempVar=(int)(Math.random()*maxValue);
+  return tempVar;
+}
+
+/* CURRENT TASKS!!!!:
+1. red dots evenly spaced out
+2. make randomXplatforms code clear
+*/
+
 void draw()
 {
   background(200);
 
   //ground
   fill(groundColor);
-  rect(-200, 400, 1200, 200);
+  rect(-200, 400, width+200, 200);
 
   //drawing random platforms
   fill(groundColor);
   for (int i=0; i<randomArrayLength; i++)
   {
-    rect(randomXpositions[i], randomYpositions[i], 300, 20);
+    rect(randomXpositions[i], randomYpositions[i], 300, 20,4);
   }
 
   //little box
   fill(255);
-  rect(x, y, 10, 10);
+  rect(x, y, mainSize, mainSize,3);
 
   //wrapping around screen
-  if (x>=1005) {x=0; y=y;}
-  if (x<-5) {x=1000; y=y;}
+  if (x>width-mainSize) {x=0;}
+  if (x<0) {x=width-mainSize;}
 
   //show score
   textSize(25);
@@ -72,7 +92,7 @@ void draw()
   {
     collectables.get(c).show();
     collectables.get(c).scoring();
-    if ((x==collectables.get(c).getX() || x==collectables.get(c).getX()+1 || x==collectables.get(c).getX()+2 || x==collectables.get(c).getX()+3) && y==collectables.get(c).getY())
+    if ((x==collectables.get(c).getX() || x==collectables.get(c).getX()+1 || x==collectables.get(c).getX()+2 || x==collectables.get(c).getX()+3 || x==collectables.get(c).getX()+5) && y==collectables.get(c).getY())
     {
       collectables.remove(c);
     }
@@ -129,11 +149,11 @@ class Collectable
   void show()
   {
     fill(255, 0, 0);
-    rect(collectableX, collectableY, 10, 10);
+    rect(collectableX, collectableY, 10, 10,3);
   }
   void scoring()
   {
-    if ((x==collectableX || x==collectableX+1 || x==collectableX+2 || collectableX==3) && y==collectableY)
+    if ((x==collectableX || x==collectableX+1 || x==collectableX+2 || x==collectableX+3 || x==collectableX+5) && y==collectableY)
     {
       score++;
     }
@@ -141,4 +161,3 @@ class Collectable
   public int getX(){return collectableX;}
   public int getY(){return collectableY;}
 }
-
