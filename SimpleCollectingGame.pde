@@ -58,8 +58,6 @@ public int newRandInt(int tempVar, int maxValue){
 /* CURRENT TASKS!!!!:
 1. red dots evenly spaced out
 2. make randomXplatforms code clear
-3. fix scoring..unaccurate sometimes
-4. looping dropping..
 */
 
 void draw()
@@ -94,7 +92,7 @@ void draw()
   {
     collectables.get(c).show();
     collectables.get(c).scoring();
-    if ((x==collectables.get(c).getX() || x==collectables.get(c).getX()+1 || x==collectables.get(c).getX()+2 || x==collectables.get(c).getX()+3) && y==collectables.get(c).getY())
+    if ((x==collectables.get(c).getX() || x==collectables.get(c).getX()+1 || x==collectables.get(c).getX()+2 || x==collectables.get(c).getX()+3 || x==collectables.get(c).getX()+5) && y==collectables.get(c).getY())
     {
       collectables.remove(c);
     }
@@ -155,7 +153,7 @@ class Collectable
   }
   void scoring()
   {
-    if ((x==collectableX || x==collectableX+1 || x==collectableX+2 || collectableX==3) && y==collectableY)
+    if ((x==collectableX || x==collectableX+1 || x==collectableX+2 || x==collectableX+3 || x==collectableX+5) && y==collectableY)
     {
       score++;
     }
