@@ -14,6 +14,7 @@ int [] randomXpositions;
 int enemiesArrayListSize=1; //switch to zero on lvl 1
 ArrayList <Enemy> enemies =new ArrayList <Enemy>();
 int score=0;
+<<<<<<< HEAD
 boolean newLevel=true;
 boolean gameOver=false;
 int level=1;
@@ -25,6 +26,10 @@ color characterColor=color(255);
 color collectableColor=color(255,0,0);
 color groundColor=color(0);
 
+=======
+int platformX;
+int platformY;
+>>>>>>> origin/gh-pages
 void setup()
 {
   size(1000, 600);
@@ -40,8 +45,25 @@ void setup()
   randomYpositions=new int [randomArrayLength];
   randomXpositions=new int [randomArrayLength];
 
+<<<<<<< HEAD
   createNewPlatformPositions(); 
   displayNewLevel();
+=======
+  //creating random platform positions
+  int i=1;
+  randomXpositions[0]=(int)(Math.random()*(width-300));
+  randomYpositions[0]=300;
+  while(i<randomArrayLength)
+  {
+    do{
+      platformX=newRandInt(platformX, width-300);
+      randomXpositions[i]=platformX;
+    }
+    while(abs((randomXpositions[i]-randomXpositions[i-1]))>350);
+    randomYpositions[i]=randomYpositions[i-1]-((int)(Math.random()*50)+50);
+    i++;
+  }
+>>>>>>> origin/gh-pages
   
   for (int c=0; c<collectablesArrayListSize; c++)
   {
@@ -58,6 +80,7 @@ public int newRandInt(int tempVar, int maxValue){
   return tempVar;
 }
 
+<<<<<<< HEAD
 public void createNewPlatformPositions(){
   int i=1;
   randomXpositions[0]=(int)(Math.random()*(width-platformWidth));
@@ -78,6 +101,13 @@ public void createNewPlatformPositions(){
 1. enemies land properly
 2. make randomXplatforms code clear
 3. change platform number for each level
+=======
+/* CURRENT TASKS!!!!:
+1. red dots evenly spaced out
+2. make randomXplatforms code clear
+3. fix scoring..unaccurate sometimes
+4. looping dropping..
+>>>>>>> origin/gh-pages
 */
 
 void draw()
@@ -92,11 +122,19 @@ void draw()
   fill(groundColor);
   for (int i=0; i<randomArrayLength; i++)
   {
+<<<<<<< HEAD
     rect(randomXpositions[i], randomYpositions[i], platformWidth, 20,4);
   }
 
   //little box
   fill(characterColor);
+=======
+    rect(randomXpositions[i], randomYpositions[i], 300, 20,4);
+  }
+
+  //little box
+  fill(255);
+>>>>>>> origin/gh-pages
   rect(x, y, mainSize, mainSize,3);
 
   //wrapping around screen
@@ -260,7 +298,11 @@ class Collectable
   }
   void show()
   {
+<<<<<<< HEAD
     fill(collectableColor);
+=======
+    fill(255, 0, 0);
+>>>>>>> origin/gh-pages
     rect(collectableX, collectableY, 10, 10,3);
   }
   void scoring()
@@ -276,6 +318,7 @@ class Collectable
   public int getX(){return collectableX;}
   public int getY(){return collectableY;}
 }
+<<<<<<< HEAD
 
 class Enemy
 {
@@ -336,3 +379,5 @@ class Enemy
   public int getX(){return enemyX;}
   public int getY(){return enemyY;}
 }
+=======
+>>>>>>> origin/gh-pages
