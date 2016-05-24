@@ -75,9 +75,7 @@ public void createNewPlatformPositions(){
 }
 
 /* CURRENT TASKS!!!!:
-1. enemies land properly
-2. make randomXplatforms code clear
-3. change platform number for each level
+1. make randomXplatforms code clear
 */
 
 void draw()
