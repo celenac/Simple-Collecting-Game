@@ -9,7 +9,7 @@ boolean [] keys; //pressing two keys simultaneously
 int collectablesArrayListSize=10;
 ArrayList <Collectable> collectables =new ArrayList <Collectable>();
 int [] randomYpositions;
-int randomArrayLength=(int)(Math.random()*3)+2;
+int randomArrayLength; //number of platforms
 int [] randomXpositions;
 int enemiesArrayListSize=1; //switch to zero on lvl 1
 ArrayList <Enemy> enemies =new ArrayList <Enemy>();
@@ -24,6 +24,7 @@ color enemyColor=color(2,198,0);
 color characterColor=color(255);
 color collectableColor=color(255,0,0);
 color groundColor=color(0);
+color backgroundColor=color(200);
 
 void setup()
 {
@@ -37,8 +38,6 @@ void setup()
   keys[0]=false;
   keys[1]=false;
   keys[2]=false;
-  randomYpositions=new int [randomArrayLength];
-  randomXpositions=new int [randomArrayLength];
 
   createNewPlatformPositions(); 
   displayNewLevel();
@@ -59,6 +58,9 @@ public int newRandInt(int tempVar, int maxValue){
 }
 
 public void createNewPlatformPositions(){
+  randomArrayLength=(int)(Math.random()*2)+3;
+  randomYpositions=new int [randomArrayLength];
+  randomXpositions=new int [randomArrayLength];
   int i=1;
   randomXpositions[0]=(int)(Math.random()*(width-platformWidth));
   randomYpositions[0]=300;
@@ -75,12 +77,14 @@ public void createNewPlatformPositions(){
 }
 
 /* CURRENT TASKS!!!!:
-1. make randomXplatforms code clear
+1. enemies land properly
+2. make randomXplatforms code clear
+3. change platform number for each level
 */
 
 void draw()
 {
-  background(200);
+  background(backgroundColor);
 
   //ground
   fill(groundColor);
@@ -154,16 +158,23 @@ void draw()
   for (int e=0; e<enemies.size(); e++)
   {
     for (int w = 0; w < mainSize; w++) {
-      if ((x==enemies.get(e).getX()+w) && y==enemies.get(e).getY())
-      {
-        gameOver=true;
+      for (int h = 0; h < mainSize; h++) {
+        if ((x==enemies.get(e).getX()+w) && y==enemies.get(e).getY()+h)
+        {
+          gameOver=true;
+        }
       }
     }
   }
   if(gameOver==true){
+    fill(0,125);
+    rect(0,0,width,height);
     fill(255);
-    text("GAME OVER",width/2,height/2-10);
-    text("Click anywhere to play again", width/2, height/2+10);
+    textSize(50);
+    text("GAME OVER",width/2,height/2-50);
+    textSize(20);
+    text("~ YOUR LEVEL: "+level+" ~", width/2, height/2-10);
+    text("CLICK ANYWHERE TO PLAY AGAIN", width/2, height/2+20);
     for (int c=0; c<collectables.size(); c++){
       collectables.remove(c);
     }
@@ -189,18 +200,19 @@ void draw()
 }
 
   public void displayNewLevel(){
-    fill(255,100);
+    fill(0,125);
     rect(0,0,width,height);
     fill(255);
     textSize(50);
     text("Level "+level, width/2, height/2-50);
-    textSize(25);
-    text("Click anywhere to begin",width/2,height/2+10);
+    textSize(20);
+    text("CLICK ANYWHERE TO BEGIN",width/2,height/2+10);
     if(mousePressed==true){
-      clear(); //redraws the screen;
+      redraw(); //redraws the screen;
       y=380;
       x=width/2;
       newLevel=false;
+      backgroundColor=color((int)(Math.random()*200)+50, (int)(Math.random()*200)+50, (int)(Math.random()*200)+50);
     }
   }
 
@@ -212,6 +224,7 @@ void mouseClicked(){
     score=0;
     gameOver=false;
     newLevel=true;
+    backgroundColor=color(200);
     createNewPlatformPositions(); 
     displayNewLevel();
     for (int c=0; c<collectablesArrayListSize; c++)
@@ -222,7 +235,7 @@ void mouseClicked(){
     for (int e=0; e<enemiesArrayListSize; e++){
       enemies.add(new Enemy());
     }
-    clear();
+    redraw();
   }
 }
 
@@ -294,10 +307,10 @@ class Enemy
   void move(){
     if(newLevel==false && gameOver==false){
       if(enemyRandomDirection<0){
-        enemyX=enemyX-2;
+        enemyX=enemyX-3;
       }
       else{
-        enemyX=enemyX+2;
+        enemyX=enemyX+3;
       }
       if(millis()%200==0){ //for every 100 milliseconds, generate a new random direction
         enemyRandomDirection=(int)(Math.random()*50)-26;
@@ -317,7 +330,7 @@ class Enemy
       {
         enemy_isjumping=0;
       }
-      if (get(enemyY, enemyY+9)==groundColor || get(enemyX+10, enemyY+9)==groundColor) {
+      if (get(enemyX, enemyY+9)==groundColor || get(enemyX+10, enemyY+9)==groundColor) {
         enemyY--;
       } //makes enemy walk on the very surface after a jump
     }
