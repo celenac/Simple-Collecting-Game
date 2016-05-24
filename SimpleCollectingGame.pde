@@ -208,8 +208,7 @@ void draw()
     textSize(20);
     text("CLICK ANYWHERE TO BEGIN",width/2,height/2+10);
     if(mousePressed==true){
-      //redraw(); //redraws the screen;
-      fill(0);
+      fill(0); //redraws the screen
       rect(0,0,width,height);
       y=380;
       x=width/2;
@@ -237,8 +236,7 @@ void mouseClicked(){
     for (int e=0; e<enemiesArrayListSize; e++){
       enemies.add(new Enemy());
     }
-    //redraw();
-    fill(0);
+    fill(0); //redraws the screen
     rect(0,0,width,height);
   }
 }
