@@ -5,23 +5,15 @@
 		<title>Collecting Game</title>
 		<link href="stylesheet.css" rel="stylesheet" type="text/css">
 		<script src="processing.js"></script>
+		<script src="buzz.min.js" type="text/javascript"></script>
 	</head>
 
 	<body>
-		<script type="text/javascript">
-			Audio audio = new Audio();
-			String fileExt; //String that will house the audio extension
-			if (audio.canPlayType && audio.canPlayType("audio/ogg")) {
-			  fileExt = ".ogg";
-			} 
-			else {
-			  fileExt = ".mp3";
-			}
-			audio.setAttribute("src","jump"+fileExt);
+		<script type="text/processing">
+			var jumpSound = new buzz.sound ("jump.mp3");
 			void keyPressed(){
-				if(keyCode==UP)
-				{
-					audio.play();
+				if(keyCode==UP){
+					jumpSound.play();
 				}
 			}
 
