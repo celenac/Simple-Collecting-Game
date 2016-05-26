@@ -25,8 +25,8 @@ color collectableColor=color(255,0,0);
 color groundColor=color(0);
 color backgroundColor=color(200);
 Audio jumpSound=new Audio(); //make new HTML5 audio object 
-float vol=0; //volume
-boolean fadeOut=false;
+Audio collectSound=new Audio();
+Audio touchSound=new Audio();
 
 void setup()
 {
@@ -53,24 +53,20 @@ void setup()
     enemies.add(new Enemy());
   }
 
-  jumpSound.setAttribute("src","jump.mp3"); //loads audio file and appends extentsion
-  //jumpSound.addEventListener("ended",repeat);
-}
-
-void repeat(){
-  jumpSound.play();
+  //load audio files
+  jumpSound.setAttribute("src","jump.mp3");
+  collectSound.setAttribute("src","wink.mp3");
+  touchSound.setAttribute("src","klonk.mp3");
 }
 
 void draw()
 {
   background(backgroundColor);
 
-  //sound
-  //jumpSound.play();
+  //set volume for sounds
   jumpSound.volume=1;
-  /*if(fadeOut){
-    vol-=0.1;
-  }*/
+  collectSound.volume=1;
+  touchSound.volume=1;
 
   //ground
   fill(groundColor);
@@ -110,6 +106,7 @@ void draw()
     collectables.get(c).scoring();
     if ((x==collectables.get(c).getX() || x==collectables.get(c).getX()+1 || x==collectables.get(c).getX()+2 || x==collectables.get(c).getX()+3 || x==collectables.get(c).getX()+5) && y==collectables.get(c).getY())
     {
+      collectSound.play();
       collectables.remove(c);
     }
   }
@@ -131,15 +128,12 @@ void draw()
   //character jump
   if (keys[2]==true && isjumping==0)
   {
-    /*fadeOut=false;
-    vol=1;*/
     jumpSound.play();
     isjumping=1;
     yinc=-15;
   }
   if ((isjumping==1 || get(x, y+10)!=groundColor)&&newLevel==false) //if character is jumping
   {
-    //fadeOut=true;
     y=y+yinc; //add thrust to current y position
     yinc=yinc+1; //-5,-4,-3,-2,-1,0,1,2
   }
@@ -160,6 +154,7 @@ void draw()
       for (int h = 0; h < mainSize; h++) {
         if ((x==enemies.get(e).getX()+w) && y==enemies.get(e).getY()+h)
         {
+          touchSound.play();
           gameOver=true;
         }
       }
