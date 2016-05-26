@@ -60,6 +60,12 @@ void setup()
     fileExt = ".mp3";
   }
   audio.setAttribute("src","jump"+fileExt); //loads audio file and appends extentsion
+  audio.addEventListener("ended",repeat);
+  audio.play();
+}
+
+void repeat(){
+  audio.play();
 }
 
 void draw()
