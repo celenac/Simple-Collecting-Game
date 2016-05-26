@@ -25,7 +25,6 @@ color collectableColor=color(255,0,0);
 color groundColor=color(0);
 color backgroundColor=color(200);
 Audio audio=new Audio(); //make new HTML5 audio object 
-String fileExt; //houses audio extension
 float vol=0; //volume
 boolean fadeOut=false;
 
@@ -54,13 +53,6 @@ void setup()
     enemies.add(new Enemy());
   }
 
-  //checking to see what type of audio the browser can play, then assigns appropriate extention
-  /*if (audio.canPlayType && audio.canPlayType("audio/ogg")) {
-    fileExt = ".ogg";
-  } 
-  else {
-    fileExt = ".mp3";
-  }*/
   audio.setAttribute("src","jump.mp3"); //loads audio file and appends extentsion
   audio.addEventListener("ended",repeat);
   audio.play();
@@ -139,14 +131,15 @@ void draw()
   //character jump
   if (keys[2]==true && isjumping==0)
   {
-    fadeOut=false;
-    vol=1;
+    //fadeOut=false;
+    //vol=1;
+    audio.play();
     isjumping=1;
     yinc=-15;
   }
   if ((isjumping==1 || get(x, y+10)!=groundColor)&&newLevel==false) //if character is jumping
   {
-    fadeOut=true;
+    //fadeOut=true;
     y=y+yinc; //add thrust to current y position
     yinc=yinc+1; //-5,-4,-3,-2,-1,0,1,2
   }
