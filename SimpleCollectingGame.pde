@@ -26,6 +26,8 @@ color groundColor=color(0);
 color backgroundColor=color(200);
 Audio audio=new Audio(); //make new HTML5 audio object 
 String fileExt; //houses audio extension
+float vol=0; //volume
+boolean fadeOut=false;
 
 void setup()
 {
@@ -71,6 +73,12 @@ void repeat(){
 void draw()
 {
   background(backgroundColor);
+
+  //sound
+  audio.volume=constrain(vol, 0, 1);
+  if(fadeOut){
+    vol-=0.1;
+  }
 
   //ground
   fill(groundColor);
@@ -131,12 +139,14 @@ void draw()
   //character jump
   if (keys[2]==true && isjumping==0)
   {
-    audio.play();
+    fadeOut=false;
+    vol=1;
     isjumping=1;
     yinc=-15;
   }
   if ((isjumping==1 || get(x, y+10)!=groundColor)&&newLevel==false) //if character is jumping
   {
+    fadeOut=true;
     y=y+yinc; //add thrust to current y position
     yinc=yinc+1; //-5,-4,-3,-2,-1,0,1,2
   }
