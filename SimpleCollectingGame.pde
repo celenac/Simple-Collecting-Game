@@ -66,11 +66,11 @@ void draw()
   background(backgroundColor);
 
   //sound
-   jumpSound.play();
-  jumpSound.volume=constrain(vol, 0, 1);
-  if(fadeOut){
+  //jumpSound.play();
+  jumpSound.volume=1;
+  /*if(fadeOut){
     vol-=0.1;
-  }
+  }*/
 
   //ground
   fill(groundColor);
@@ -131,14 +131,15 @@ void draw()
   //character jump
   if (keys[2]==true && isjumping==0)
   {
-    fadeOut=false;
-    vol=1;
+    /*fadeOut=false;
+    vol=1;*/
+    jumpSound.play();
     isjumping=1;
     yinc=-15;
   }
   if ((isjumping==1 || get(x, y+10)!=groundColor)&&newLevel==false) //if character is jumping
   {
-    fadeOut=true;
+    //fadeOut=true;
     y=y+yinc; //add thrust to current y position
     yinc=yinc+1; //-5,-4,-3,-2,-1,0,1,2
   }
