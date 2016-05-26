@@ -54,12 +54,11 @@ void setup()
   }
 
   jumpSound.setAttribute("src","jump.mp3"); //loads audio file and appends extentsion
-  jumpSound.addEventListener("ended",repeat(jumpSound));
-  jumpSound.play();
+  //jumpSound.addEventListener("ended",repeat);
 }
 
-void repeat(Audio sound){
-  sound.play();
+void repeat(){
+  jumpSound.play();
 }
 
 void draw()
@@ -67,6 +66,7 @@ void draw()
   background(backgroundColor);
 
   //sound
+   jumpSound.play();
   jumpSound.volume=constrain(vol, 0, 1);
   if(fadeOut){
     vol-=0.1;
