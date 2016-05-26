@@ -8,6 +8,25 @@
 	</head>
 
 	<body>
+		<script type="text/javascript">
+			Audio audio = new Audio();
+			String fileExt; //String that will house the audio extension
+			if (audio.canPlayType && audio.canPlayType("audio/ogg")) {
+			  fileExt = ".ogg";
+			} 
+			else {
+			  fileExt = ".mp3";
+			}
+			audio.setAttribute("src","jump"+fileExt);
+			void keyPressed(){
+				if(keyCode==UP)
+				{
+					audio.play();
+				}
+			}
+
+		</script>
+
 		<header><h1>Simple Collecting Game</h1></header>
 		<section id="content"><canvas data-processing-sources="SimpleCollectingGame.pde"></canvas></section>
 	</body>
