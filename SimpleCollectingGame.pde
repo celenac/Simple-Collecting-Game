@@ -24,6 +24,8 @@ color characterColor=color(255);
 color collectableColor=color(255,0,0);
 color groundColor=color(0);
 color backgroundColor=color(200);
+Audio audio=new Audio(); //make new HTML5 audio object 
+String fileExt; //houses audio extension
 
 void setup()
 {
@@ -49,6 +51,15 @@ void setup()
   for (int e=0; e<level; e++){
     enemies.add(new Enemy());
   }
+
+  //checking to see what type of audio the browser can play, then assigns appropriate extention
+  if (audio.canPlayType && audio.canPlayType("audio/ogg")) {
+    fileExt = ".ogg";
+  } 
+  else {
+    fileExt = ".mp3";
+  }
+  audio.setAttribute("src","jump"+fileExt); //loads audio file and appends extentsion
 }
 
 void draw()
@@ -114,6 +125,7 @@ void draw()
   //character jump
   if (keys[2]==true && isjumping==0)
   {
+    audio.play();
     isjumping=1;
     yinc=-15;
   }

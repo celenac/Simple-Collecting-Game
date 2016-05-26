@@ -9,31 +9,6 @@
 	</head>
 
 	<body>
-		<script type="text/processing">
-			Audio audio = new Audio();
-			// make string that will house the audio extension
-			String fileExt;
-			if (audio.canPlayType && audio.canPlayType("audio/ogg")) {
-			  fileExt = ".ogg";
-			} 
-			else {
-			  fileExt = ".mp3";
-			}
-
-			void setup(){
-				audio.setAttribute("src","beat"+fileExt);
-			}
-
-			void draw(){}
-
-			void keyPressed(){
-				if(keyCode==UP){
-					audio.play();
-				}
-			}
-
-		</script>
-
 		<header><h1>Simple Collecting Game</h1></header>
 		<section id="content"><canvas data-processing-sources="SimpleCollectingGame.pde"></canvas></section>
 	</body>
