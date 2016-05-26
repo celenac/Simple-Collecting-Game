@@ -55,13 +55,13 @@ void setup()
   }
 
   //checking to see what type of audio the browser can play, then assigns appropriate extention
-  if (audio.canPlayType && audio.canPlayType("audio/ogg")) {
+  /*if (audio.canPlayType && audio.canPlayType("audio/ogg")) {
     fileExt = ".ogg";
   } 
   else {
     fileExt = ".mp3";
-  }
-  audio.setAttribute("src","Back To Basics - The Barden Bellas"+fileExt); //loads audio file and appends extentsion
+  }*/
+  audio.setAttribute("src","Back To Basics - The Barden Bellas.mp3"); //loads audio file and appends extentsion
   audio.addEventListener("ended",repeat);
   audio.play();
 }
