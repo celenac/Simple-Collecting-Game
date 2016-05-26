@@ -10,11 +10,25 @@
 
 	<body>
 		<script type="text/processing">
-			var jumpSound = new buzz.sound ("jump.mp3");
+			Audio audio = new Audio();
+			// make string that will house the audio extension
+			String fileExt;
+			if (audio.canPlayType && audio.canPlayType("audio/ogg")) {
+			  fileExt = ".ogg";
+			} 
+			else {
+			  fileExt = ".mp3";
+			}
+
+			void setup(){
+				audio.setAttribute("src","beat"+fileExt);
+			}
+
+			void draw(){}
+
 			void keyPressed(){
 				if(keyCode==UP){
-					console.log("inside");
-					jumpSound.play();
+					audio.play();
 				}
 			}
 
