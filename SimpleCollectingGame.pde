@@ -94,16 +94,18 @@ void draw()
   //show score
   textSize(25);
   textAlign(CENTER);
-  fill(0,80);
-  text(score + "/" + collectablesArrayListSize, 42, 32);
+  fill(0,80); //text shadow
+  text(score + "/" + collectablesArrayListSize, 41, 31);
   fill(0);
   text(score + "/" + collectablesArrayListSize, 40, 30);
 
   //show level
   textSize(20);
-  fill(0);
   textAlign(RIGHT);
-  text("LVL "+level, width-10, 30);
+  fill(0,80);
+  text("LVL "+level, width-11, 31);
+  fill(0);
+  text("LVL "+level, width-12, 30);
 
   //collectables
   for (int c=0; c<collectables.size(); c++)
@@ -171,12 +173,20 @@ void draw()
   if(gameOver==true){
     fill(0,125);
     rect(0,0,width,height);
-    fill(255);
     textAlign(CENTER);
     textSize(50);
+    fill(0,80); //text shadow
+    text("GAME OVER",width/2+2,height/2-48);
+    fill(255);
     text("GAME OVER",width/2,height/2-50);
     textSize(20);
+    fill(0,80); //text shadow
+    text("~ YOUR LEVEL: "+level+" ~", width/2+2, height/2-8);
+    fill(255);
     text("~ YOUR LEVEL: "+level+" ~", width/2, height/2-10);
+    fill(0,80); //text shadow
+    text("CLICK ANYWHERE TO PLAY AGAIN", width/2+2, height/2+22);
+    fill(255);
     text("CLICK ANYWHERE TO PLAY AGAIN", width/2, height/2+20);
     for (int c=0; c<collectables.size(); c++){
       collectables.remove(c);
@@ -205,11 +215,16 @@ void draw()
   public void displayNewLevel(){
     fill(0,125);
     rect(0,0,width,height);
-    fill(255);
     textAlign(CENTER);
     textSize(50);
+    fill(0,80); //text shadow
+    text("Level "+level, width/2+2, height/2-48);
+    fill(255);
     text("Level "+level, width/2, height/2-50);
     textSize(20);
+    fill(0,80); //text shadow
+    text("CLICK ANYWHERE TO BEGIN",width/2+2,height/2+12);
+    fill(255);
     text("CLICK ANYWHERE TO BEGIN",width/2,height/2+10);
     if(mousePressed==true){
       fill(0); //redraws the screen
