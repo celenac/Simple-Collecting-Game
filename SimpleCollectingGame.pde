@@ -27,6 +27,7 @@ color backgroundColor=color(200);
 Audio jumpSound=new Audio(); //make new HTML5 audio object 
 Audio collectSound=new Audio();
 Audio touchSound=new Audio();
+Audio backgroundMusic=new Audio();
 
 void setup()
 {
@@ -57,6 +58,15 @@ void setup()
   jumpSound.setAttribute("src","jump.mp3");
   collectSound.setAttribute("src","wink.mp3");
   touchSound.setAttribute("src","rip.mp3");
+  backgroundMusic.setAttribute("src","music1.mp3");
+
+  //play background music
+  backgroundMusic.addEventListener("ended",repeat);
+  backgroundMusic.play();
+}
+
+void repeat(){
+  backgroundMusic.play();
 }
 
 void draw()
@@ -67,6 +77,7 @@ void draw()
   jumpSound.volume=1;
   collectSound.volume=1;
   touchSound.volume=1;
+  backgroundMusic.volume=1;
 
   //ground
   fill(groundColor);
@@ -163,6 +174,7 @@ void draw()
       for (int h = 0; h < mainSize; h++) {
         if ((x==enemies.get(e).getX()+w) && y==enemies.get(e).getY()+h)
         {
+          backgroundMusic.pause();
           touchSound.currentTime=.5;
           touchSound.play();
           gameOver=true;
@@ -262,6 +274,8 @@ public void createNewPlatformPositions(){
 
 void mouseClicked(){
   if(gameOver==true){ //resets game
+    backgroundMusic.currentTime=0;
+    backgroundMusic.play();
     collectablesArrayListSize=10;
     level=1;
     score=0;
