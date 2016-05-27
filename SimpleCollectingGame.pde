@@ -156,9 +156,9 @@ void draw()
         {
           //touchSound.currentTime=0;
           touchSound.play();
-          /*if(touchSound.currentTime=3){
+          if(touchSound.currentTime=10){
             touchSound.pause();
-          }*/
+          }
           gameOver=true;
         }
       }
