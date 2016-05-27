@@ -93,8 +93,10 @@ void draw()
 
   //show score
   textSize(25);
-  fill(0);
   textAlign(CENTER);
+  fill(0,80);
+  text(score + "/" + collectablesArrayListSize, 42, 32);
+  fill(0);
   text(score + "/" + collectablesArrayListSize, 40, 30);
 
   //show level
