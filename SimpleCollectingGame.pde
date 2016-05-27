@@ -75,17 +75,17 @@ void draw()
   //drawing random platforms
   for (int i=0; i<randomArrayLength; i++)
   {
-    fill(groundColor);
-    rect(randomXpositions[i], randomYpositions[i], platformWidth, 12,4);
     fill(groundColor, 100); //platform shadow
     rect(randomXpositions[i]+4, randomYpositions[i]+4, platformWidth, 12,4);
+    fill(groundColor);
+    rect(randomXpositions[i], randomYpositions[i], platformWidth, 12,4);
   }
 
   //little box
-  fill(characterColor);
-  rect(x, y, mainSize, mainSize,3);
   fill(0,100); //character shadow
   rect(x+4, y+4, mainSize, mainSize,3);
+  fill(characterColor);
+  rect(x, y, mainSize, mainSize,3);
 
   //wrapping around screen
   if (x>width-mainSize) {x=0;}
@@ -298,10 +298,10 @@ class Collectable
   }
   void show()
   {
-    fill(collectableColor);
-    rect(collectableX, collectableY, 10, 10,3);
     fill(0,100); //collectable shadow
     rect(collectableX+4, collectableY+4, 10, 10,3);
+    fill(collectableColor);
+    rect(collectableX, collectableY, 10, 10,3);
   }
   void scoring()
   {
@@ -329,10 +329,10 @@ class Enemy
   }
 
   void show(){
-    fill(enemyColor);
-    rect(enemyX, enemyY, 10, 10, 3);
     fill(0,100); //enemy shadow
     rect(enemyX+4, enemyY+4, 10, 10, 3);
+    fill(enemyColor);
+    rect(enemyX, enemyY, 10, 10, 3);
   }
 
   void move(){
