@@ -5,7 +5,7 @@
 }
 
 canvas{
-	border-style: double;
+	border-style: solid;
 	border-width: 3px;
 	border-color: white;
 }
