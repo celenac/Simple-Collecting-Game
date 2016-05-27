@@ -106,7 +106,7 @@ void draw()
     collectables.get(c).scoring();
     if ((x==collectables.get(c).getX() || x==collectables.get(c).getX()+1 || x==collectables.get(c).getX()+2 || x==collectables.get(c).getX()+3 || x==collectables.get(c).getX()+5) && y==collectables.get(c).getY())
     {
-      collectSound.setTime=1;
+      collectSound.currentTime=.5;
       collectSound.play();
       collectables.remove(c);
     }
@@ -129,7 +129,6 @@ void draw()
   //character jump
   if (keys[2]==true && isjumping==0)
   {
-    jumpSound.setTime=1;
     jumpSound.play();
     isjumping=1;
     yinc=-15;
@@ -156,7 +155,7 @@ void draw()
       for (int h = 0; h < mainSize; h++) {
         if ((x==enemies.get(e).getX()+w) && y==enemies.get(e).getY()+h)
         {
-          touchSound.currentTime=1;
+          touchSound.currentTime=.5;
           touchSound.play();
           gameOver=true;
         }
