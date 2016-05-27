@@ -84,7 +84,7 @@ void draw()
   //little box
   fill(characterColor);
   rect(x, y, mainSize, mainSize,3);
-  fill(characterColor,100);
+  fill(0,100); //character shadow
   rect(x+4, y+4, mainSize, mainSize,3);
 
   //wrapping around screen
@@ -300,6 +300,8 @@ class Collectable
   {
     fill(collectableColor);
     rect(collectableX, collectableY, 10, 10,3);
+    fill(0,100); //collectable shadow
+    rect(collectableX+4, collectableY+4, 10, 10,3);
   }
   void scoring()
   {
@@ -329,6 +331,8 @@ class Enemy
   void show(){
     fill(enemyColor);
     rect(enemyX, enemyY, 10, 10, 3);
+    fill(0,100); //enemy shadow
+    rect(enemyX+4, enemyY+4, 10, 10, 3);
   }
 
   void move(){
