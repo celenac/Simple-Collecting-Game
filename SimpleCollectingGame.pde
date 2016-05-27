@@ -154,7 +154,7 @@ void draw()
       for (int h = 0; h < mainSize; h++) {
         if ((x==enemies.get(e).getX()+w) && y==enemies.get(e).getY()+h)
         {
-          touchSound.currentTime=0;
+          //touchSound.currentTime=0;
           touchSound.play();
           if(touchSound.currentTime=3){
             touchSound.pause();
