@@ -1,3 +1,3 @@
-# Simple-Collecting-Game
+# The Collector - Game
 
-http://celenac.github.io/Simple-Collecting-Game/
+http://celenac.github.io/thecollector
