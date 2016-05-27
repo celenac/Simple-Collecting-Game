@@ -8,9 +8,6 @@ canvas{
 	border-style: double;
 	border-width: 3px;
 	border-color: white;
-	-moz-box-shadow: 0 0 4px 4px #888;
-	-webkit-box-shadow: 0 0 4px 4px#888;
-	box-shadow: 0 0 4px 4px #888;
 }
 
 body{

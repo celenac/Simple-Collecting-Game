@@ -27,11 +27,14 @@ color backgroundColor=color(200);
 Audio jumpSound=new Audio(); //make new HTML5 audio object 
 Audio collectSound=new Audio();
 Audio touchSound=new Audio();
+PFont gameFont;
 
 void setup()
 {
   size(1000, 650);
   textAlign(CENTER);
+  gameFont=loadFont("AGENCYB.TTF");
+  textFont(gameFont);
   x=width/2;
   y=50;
   groundY=height-50;
