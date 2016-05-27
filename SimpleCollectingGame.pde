@@ -1,5 +1,5 @@
 //jumping instructions: http://ashbprocessing.blogspot.com/2013/04/second-stage-character-jumping-platforms.html
-
+//audio instructions: http://aaron-sherwood.com/processingjs/
 
 int x, y, groundY;
 int mainSize=10; //white square's width and height
