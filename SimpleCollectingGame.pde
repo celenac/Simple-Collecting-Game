@@ -75,14 +75,14 @@ void draw()
   //drawing random platforms
   for (int i=0; i<randomArrayLength; i++)
   {
-    fill(groundColor, 100); //platform shadow
+    fill(groundColor, 80); //platform shadow
     rect(randomXpositions[i]+4, randomYpositions[i]+4, platformWidth, 12,4);
     fill(groundColor);
     rect(randomXpositions[i], randomYpositions[i], platformWidth, 12,4);
   }
 
   //little box
-  fill(0,100); //character shadow
+  fill(0,80); //character shadow
   rect(x+4, y+4, mainSize, mainSize,3);
   fill(characterColor);
   rect(x, y, mainSize, mainSize,3);
@@ -298,7 +298,7 @@ class Collectable
   }
   void show()
   {
-    fill(0,100); //collectable shadow
+    fill(0,80); //collectable shadow
     rect(collectableX+4, collectableY+4, 10, 10,3);
     fill(collectableColor);
     rect(collectableX, collectableY, 10, 10,3);
@@ -329,7 +329,7 @@ class Enemy
   }
 
   void show(){
-    fill(0,100); //enemy shadow
+    fill(0,80); //enemy shadow
     rect(enemyX+4, enemyY+4, 10, 10, 3);
     fill(enemyColor);
     rect(enemyX, enemyY, 10, 10, 3);
