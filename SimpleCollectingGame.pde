@@ -32,7 +32,6 @@ void setup()
 {
   size(1000, 650);
   textAlign(CENTER);
-  textStyle(BOLD);
   x=width/2;
   y=50;
   groundY=height-50;
