@@ -73,17 +73,19 @@ void draw()
   rect(-200, groundY, width+200, (height-groundY)+100);
 
   //drawing random platforms
-  fill(groundColor);
   for (int i=0; i<randomArrayLength; i++)
   {
+    fill(groundColor);
     rect(randomXpositions[i], randomYpositions[i], platformWidth, 12,4);
-    fill(groundColor, 100);
-    rect(randomXpositions[i]+5, randomYpositions[i]+5, platformWidth, 12,4);
+    fill(groundColor, 100); //platform shadow
+    rect(randomXpositions[i]+4, randomYpositions[i]+4, platformWidth, 12,4);
   }
 
   //little box
   fill(characterColor);
   rect(x, y, mainSize, mainSize,3);
+  fill(characterColor,100);
+  rect(x+4, y+4, mainSize, mainSize,3);
 
   //wrapping around screen
   if (x>width-mainSize) {x=0;}
