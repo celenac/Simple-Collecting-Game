@@ -77,6 +77,12 @@ void draw()
   for (int i=0; i<randomArrayLength; i++)
   {
     rect(randomXpositions[i], randomYpositions[i], platformWidth, 12,4);
+    drawingContext.fillStyle = 'red';
+    drawingContext.shadowColor = '#999';
+    drawingContext.shadowBlur = 20;
+    drawingContext.shadowOffsetX = 15;
+    drawingContext.shadowOffsetY = 15;
+    drawingContext.fill();
   }
 
   //little box
