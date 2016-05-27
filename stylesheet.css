@@ -45,3 +45,15 @@ html{
 	text-shadow:2px 2px 10px black;
 	color:black;
 }
+
+a:link{
+	color: rgb(51, 153, 102);
+}
+
+a:hover{
+	color:rgb(121, 210, 166);
+}
+
+a:visited{
+	color: gray;
+}
