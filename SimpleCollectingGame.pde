@@ -106,7 +106,7 @@ void draw()
     collectables.get(c).scoring();
     if ((x==collectables.get(c).getX() || x==collectables.get(c).getX()+1 || x==collectables.get(c).getX()+2 || x==collectables.get(c).getX()+3 || x==collectables.get(c).getX()+5) && y==collectables.get(c).getY())
     {
-      collectSound.currentTime=.5;
+      collectSound.currentTime=.25;
       collectSound.play();
       collectables.remove(c);
     }
