@@ -155,8 +155,9 @@ void draw()
         if ((x==enemies.get(e).getX()+w) && y==enemies.get(e).getY()+h)
         {
           touchSound.play();
-          if(touchSound.currentTime==5){
+          if(touchSound.currentTime==2){
             touchSound.pause();
+            touchSound.currentTime=0;
           }
           gameOver=true;
         }
