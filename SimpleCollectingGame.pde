@@ -33,7 +33,7 @@ void setup()
 {
   size(1000, 650);
   textAlign(CENTER);
-  gameFont=loadFont("AGENCYB.TTF");
+  gameFont=loadFont("Arial");
   textFont(gameFont);
   x=width/2;
   y=50;
