@@ -27,14 +27,11 @@ color backgroundColor=color(200);
 Audio jumpSound=new Audio(); //make new HTML5 audio object 
 Audio collectSound=new Audio();
 Audio touchSound=new Audio();
-PFont gameFont;
 
 void setup()
 {
   size(1000, 650);
   textAlign(CENTER);
-  gameFont=loadFont("Times New Roman");
-  textFont(gameFont);
   x=width/2;
   y=50;
   groundY=height-50;
@@ -59,7 +56,7 @@ void setup()
   //load audio files
   jumpSound.setAttribute("src","jump.mp3");
   collectSound.setAttribute("src","wink.mp3");
-  touchSound.setAttribute("src","klonk.mp3");
+  touchSound.setAttribute("src","Happiness.mp3");
 }
 
 void draw()
@@ -157,7 +154,11 @@ void draw()
       for (int h = 0; h < mainSize; h++) {
         if ((x==enemies.get(e).getX()+w) && y==enemies.get(e).getY()+h)
         {
+          touchSound.currentTime=0;
           touchSound.play();
+          if(touchSound.currentTime=3){
+            touchSound.pause();
+          }
           gameOver=true;
         }
       }
