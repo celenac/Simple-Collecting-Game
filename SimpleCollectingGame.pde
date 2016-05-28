@@ -28,6 +28,7 @@ Audio jumpSound=new Audio(); //make new HTML5 audio object
 Audio collectSound=new Audio();
 Audio touchSound=new Audio();
 Audio backgroundMusic=new Audio();
+Audio levelSound=new Audio();
 
 void setup()
 {
@@ -59,6 +60,7 @@ void setup()
   collectSound.setAttribute("src","wink.mp3");
   touchSound.setAttribute("src","rip.mp3");
   backgroundMusic.setAttribute("src","music1.mp3");
+  levelSound.setAttribute("src","ding.mp3");
 
   //play background music
   backgroundMusic.addEventListener("ended",repeat);
@@ -78,6 +80,7 @@ void draw()
   collectSound.volume=1;
   touchSound.volume=1;
   backgroundMusic.volume=1;
+  levelSound.volume=1;
 
   //ground
   fill(groundColor);
@@ -239,6 +242,7 @@ void draw()
     fill(255);
     text("CLICK ANYWHERE TO BEGIN",width/2,height/2+10);
     if(mousePressed==true){
+      levelSound.play();
       fill(0); //redraws the screen
       rect(0,0,width,height);
       y=groundY-10;
